@@ -1,0 +1,5 @@
+scylla_crud_app/node_modules
+x-2-docker-compose.yaml
+x-docker-compose.yaml
+tests
+.DS_Store

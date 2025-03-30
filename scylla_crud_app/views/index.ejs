@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ScyllaDB Server - CRUD Tester - Items List</title>
+    </head>
+    <body>
+        <h1>Keyspace - scylladb_test_keyspace_db - DEBUG - Items List</h1>
+        <p><i>Keyspace is what Scylladb calls their tables.</i></p>
+        <form action="/add" method="POST">
+            <p>Add</p> 
+            Keyspace (Database Name): <label type="text" name="keyspace" ><b><i> scylladb_test_keyspace_db </i></b></label><br>
+            Table Name: <label type="text" name="tablename" ><b><i> scylladb_test_keyspace_db.test_table_siter_user_data </i></b></label><br>
+            ID: <input type="text" name="id" required><br>
+            Name: <input type="text" name="name" required><br>
+            Price: <input type="text" name="price" required><br>
+            <button type="submit">Add Item</button>
+        </form>
+        <br />
+        <form action="/update" method="POST">
+            <p>Update</p> 
+            ID: <input type="text" name="id" required><br>
+            Name: <input type="text" name="name" required><br>
+            Price: <input type="text" name="price" required><br>
+            <button type="submit">Update Item</button>
+        </form>
+        <br />
+        <form action="/delete" method="POST">
+            <p>Delete</p> 
+            Keyspace (Database Name): <label type="text" name="keyspace" ><b><i> scylladb_test_keyspace_db </i></b></label><br>
+            Table Name: <label type="text" name="tablename" ><b><i> scylladb_test_keyspace_db.test_table_siter_user_data </i></b></label><br>
+            ID: <input type="text" name="id" required><br>
+            <button type="submit">Delete Item</button>
+        </form>
+        <br />
+        <hr />
+        <a href="/keyspaces">List all Databases aka Keyspaces </a>
+        <br />
+        <hr />
+        <% items.forEach(function(item) { %>
+            <div>
+                <strong>ID: <%= item.id %></strong>
+                <ul>
+                    <li>Name: <%= item.name %></li>
+                    <li>Price: <%= item.price %></li>
+                </ul>
+            </div>
+        <% }); %>
+
+        <br />
+        <hr />
+        <h2>Attempt to show all databases aka keyspaces on the server - output_describe_keyspaces</h2>
+        <% output_describe_keyspaces.forEach(function(item) { %>
+            <div>
+                <strong>Name: <%= item.keyspace_name %></strong>
+            </div>
+        <% }); %>
+
+        
+        <br />
+        <hr />
+        <h2>Attempt to show all databases aka keyspaces on the server - output_system_schema_keyspaces</h2>
+        <% output_system_schema_keyspaces.forEach(function(item) { %>
+            <div>
+                <strong>Name: <%= item.keyspace_name %></strong>
+            </div>
+        <% }); %>
+
+    </body>
+</html>

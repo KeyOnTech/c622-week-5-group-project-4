@@ -1,0 +1,51 @@
+services:
+
+  scylladb-node-h-1:
+    image: scylladb/scylla
+    container_name: scylladb-node-h-1
+    ports: 
+      - "8072:9042"
+    command: --smp 1 --memory 750M --overprovisioned 1 --developer-mode 1 --api-address 0.0.0.0 --seeds=scylladb-node-h-1
+    networks: 
+      - scylladb-web-f
+
+  scylladb-node-h-2:
+    image: scylladb/scylla
+    container_name: scylladb-node-h-2
+    command: --smp 1 --memory 750M --overprovisioned 1 --developer-mode 1 --api-address 0.0.0.0 --seeds=scylladb-node-h-1
+    networks: 
+      - scylladb-web-f
+
+  scylladb-node-h-3:
+    image: scylladb/scylla
+    container_name: scylladb-node-h-3
+    command: --smp 1 --memory 750M --overprovisioned 1 --developer-mode 1 --api-address 0.0.0.0 --seeds=scylladb-node-h-1
+    networks: 
+      - scylladb-web-f
+
+
+  scylladb-app-h-1:
+    build:
+      context: ./scylla_crud_app
+    container_name: scylladb-app-h-1
+    ports:
+      - "8070:8073"
+    depends_on:
+      - scylladb-node-h-1
+    networks:
+      - scylladb-web-f
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./scylla_crud_app:/scylla_crud_app
+
+
+
+
+
+
+networks:
+  scylladb-web-f:
+    driver: bridge
+
+

@@ -1,0 +1,24 @@
+{
+  "name": "scylla_crud_app",
+  "version": "1.0.0",
+  "description": "scylladb CRUD frontend demo",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "drjones",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.0",
+    "cassandra-driver": "^4.8.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
